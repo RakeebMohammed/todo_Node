@@ -1,0 +1,95 @@
+<form id="form"action="/addTask" method="post" >
+<label for="">Task</label>
+<input type="text" name="todo" id="todo">
+<label for="">Priority</label>
+<input type="number"  name="priority" id="priority">
+<button type="submit">Submit</button>
+<p style="color: red;" id="error"></p>
+</form>
+{{#if notask}}
+<h3>No tasks available</h3>
+{{else}}
+<h2>Tasks</h2>
+<table>
+    
+    <tr><td >
+Serial No.
+    </td>
+    <td>Tasks</td>
+    <td>priority
+
+    </td>
+    <td>Actions</td></tr>
+    {{#each task}}
+<tr>
+    <td id="index"></td>
+    <td>{{this.todo}}</td>
+    <td>{{this.priority}}</td>
+    {{#if this.complete}}
+    <td>[ &#10004;]</td>
+   
+   
+     {{else if this.cancelled}}
+    <td>[ &#x2718;]</td>
+   
+     {{else}}
+    <td>[    ]</td>
+   {{/if}}
+</tr>
+{{/each}}
+</table>
+
+<h2>Total Count
+</h2>
+<table>
+    <tr>
+        <td>Pending</td>
+   <td>Cancelled</td>
+   <td>Deleted</td>
+   <td>Completed</td>
+    </tr>
+    <tr>
+    <td>{{pending}}</td>
+    <td>{{cancelled}}</td>
+    <td>{{deleted}}</td>
+    <td>{{completed}}</td></tr>
+</table>
+<h2>Reports</h2>
+<table><tr>
+    <td>Tasks</td>
+    <td>Mark as complete</td>
+    <td>Mark as cancelled</td>
+    <td>Delete</td>
+</tr>
+{{#each report}}
+<tr>
+<td>{{this.todo}}{{#if this.pending}}(Pending){{/if}}
+    {{#if this.complete}}(Completed){{/if}}{{#if this.cancelled}}(Cancelled){{/if}}
+</td>
+<td><a href="/completeTask/{{this._id}}"><button>Complete</button></a></td>
+<td><a href="/cancelTask/{{this._id}}"><button>Cancel</button></a></td>
+<td><a href="/deleteTask/{{this._id}}"><button>Delete</button></a></td></tr>
+{{/each}}
+</table>
+{{/if}}
+<script>
+   
+
+ let index=   document.querySelectorAll('#index')
+ console.log(index)
+ for(let i=0;i<index.length;i++)
+ {
+    index[i].innerHTML=i+1
+ }
+document.addEventListener('submit',(e)=>{
+    let todo=document.getElementById('todo').value
+ let priority=document.getElementById('priority').value
+ console.log(todo)
+if(todo==='' || priority===''){
+    e.preventDefault()
+
+document.getElementById('error').innerHTML="Enter Input Please...!"
+}
+})
+ 
+</script>

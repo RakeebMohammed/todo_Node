@@ -1,0 +1,17 @@
+body {
+  display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+  padding: 100px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+table ,tr ,td{
+border: 2px ridge gray;
+padding:5px;
+text-align: center;
+}
+
+a {
+  color: #00B7FF;
+}
