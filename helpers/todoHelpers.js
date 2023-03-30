@@ -10,7 +10,7 @@ module.exports = {
         .sort({ priority: 1 })
         .toArray();
       console.log(result);
-      if (result.length!=0) resolve(result);
+      if (result.length != 0) resolve(result);
       else reject();
     });
   },
@@ -110,7 +110,7 @@ module.exports = {
         .find({ deleted: false })
         .sort({ pending: -1, complete: 1 })
         .toArray();
-      if (report.length!=0) resolve(report);
+      if (report.length != 0) resolve(report);
       else reject();
     });
   },

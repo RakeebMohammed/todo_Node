@@ -3,33 +3,34 @@ var router = express.Router();
 let todoHelpers = require("../helpers/todoHelpers");
 /* GET home page. */
 router.get("/", async function (req, res, next) {
-  
   let { pending, cancelled, completed, deleted } =
     await todoHelpers.getAllactions();
   // console.log(pending);
-  todoHelpers.getTasks().then((task) => {
-    todoHelpers
-      .sortedReport()
-      .then((report) => {
-         console.log(report);
-        res.render("index", {
-          task,
-          pending,
-          cancelled,
-          completed,
-          deleted,
-          report,
+  todoHelpers
+    .getTasks()
+    .then((task) => {
+      todoHelpers
+        .sortedReport()
+        .then((report) => {
+          console.log(report);
+          res.render("index", {
+            task,
+            pending,
+            cancelled,
+            completed,
+            deleted,
+            report,
+          });
+        })
+        .catch(() => {
+          res.render("index", { notask: true });
         });
-      })
-      .catch(() => {
-        res.render("index", { notask: true });
-      });
-  }) .catch(() => {
-    res.render("index", { notask: true });
-  });
+    })
+    .catch(() => {
+      res.render("index", { notask: true });
+    });
 });
 router.post("/addTask", (req, res) => {
-  
   todoHelpers.insertTask(req.body).then((success) => {
     console.log(req.body);
     res.redirect("/");
@@ -45,7 +46,7 @@ router.get("/cancelTask/:id", (req, res) => {
     res.redirect("/");
   });
 });
-router.get("/deleteTask/:id", (req, res) => {
+router.delete("/deleteTask/:id", (req, res) => {
   todoHelpers.deleteTask(req.params.id).then(() => {
     res.redirect("/");
   });
