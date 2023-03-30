@@ -46,7 +46,8 @@ router.get("/cancelTask/:id", (req, res) => {
     res.redirect("/");
   });
 });
-router.delete("/deleteTask/:id", (req, res) => {
+router.get("/deleteTask/:id", (req, res) => {
+  console.log(req.params.id);
   todoHelpers.deleteTask(req.params.id).then(() => {
     res.redirect("/");
   });

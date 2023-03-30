@@ -4,7 +4,7 @@
   <label for="">Priority</label>
   <input type="number" name="priority" id="priority" />
   <button type="submit">Submit</button>
-  <p style="color: red;" id="error"></p>
+  <p style="color: red; margin-left:25px;" id="error"></p>
 </form>
 {{#if notask}}
   <h3>No tasks available</h3>
@@ -77,12 +77,17 @@
 {{/if}}
 <script>
 
-  let index= document.querySelectorAll('#index') console.log(index) for(let
-  i=0;i<index.length;i++) { index[i].innerHTML=i+1 }
-  document.addEventListener('submit',(e)=>{ let
-  todo=document.getElementById('todo').value let
-  priority=document.getElementById('priority').value console.log(todo)
-  if(todo==='' || priority===''){ e.preventDefault()
+  let index= document.querySelectorAll('#index') 
+  console.log(index) 
+  for(let i=0;i<index.length;i++) { 
+    index[i].innerHTML=i+1 
+    }
+  document.addEventListener('submit',(e)=>{ 
+    let todo=document.getElementById('todo').value 
+    let priority=document.getElementById('priority').value 
+  console.log(todo)
+  if(todo==='' || priority===''){ 
+    e.preventDefault()
   document.getElementById('error').innerHTML="Enter Input Please...!" } })
 
 </script>
