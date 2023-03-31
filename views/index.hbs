@@ -1,3 +1,4 @@
+<h1 style="margin-bottom:25px ;color:green;font-size:xx-large;font-family:Georgia, 'Times New Roman', Times, serif">Todo List</h1>
 <form id="form" action="/addTask" method="post">
   <label for="">Task</label>
   <input type="text" name="todo" id="todo" />
@@ -70,7 +71,9 @@
         <td><a href="/completeTask/{{this._id}}"><button
             >Complete</button></a></td>
         <td><a href="/cancelTask/{{this._id}}"><button>Cancel</button></a></td>
-        <td><a href="/deleteTask/{{this._id}}"><button
+        
+       
+        <td><a href="/deleteTask/{{this._id}} " onClick="return confirm('Are you sure to delete this')"><button
             >Delete</button></a></td></tr>
     {{/each}}
   </table>
