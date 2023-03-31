@@ -3,7 +3,7 @@
   <label for="">Task</label>
   <input type="text" name="todo" id="todo" />
   <label for="">Priority</label>
-  <input type="number" name="priority" id="priority" />
+  <input type="number" name="priority" id="priority"  pattern="[1-9]+" max="1"/>
   <button type="submit">Submit</button>
   <p style="color: red; margin-left:25px;" id="error"></p>
 </form>
@@ -91,6 +91,12 @@
   console.log(todo)
   if(todo==='' || priority===''){ 
     e.preventDefault()
-  document.getElementById('error').innerHTML="Enter Input Please...!" } })
+  document.getElementById('error').innerHTML="Enter Input Please...!" } 
+  else if(priority==0)
+  {
+    e.preventDefault()
+    document.getElementById('error').innerHTML="Priority cannot be zero...!" 
+  }
+  })
 
 </script>
